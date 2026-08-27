@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "Nightglass",
+  "short_name": "Nightglass",
+  "version": "0.0.0",
+  "description": "A private, local-only dynamic dark reader for the web.",
+  "minimum_chrome_version": "148",
+  "icons": {
+    "16": "assets/icons/nightglass-16.png",
+    "32": "assets/icons/nightglass-32.png",
+    "48": "assets/icons/nightglass-48.png",
+    "64": "assets/icons/nightglass-64.png",
+    "96": "assets/icons/nightglass-96.png",
+    "128": "assets/icons/nightglass-128.png",
+    "256": "assets/icons/nightglass-256.png",
+    "512": "assets/icons/nightglass-512.png"
+  },
+  "action": {
+    "default_title": "Nightglass",
+    "default_popup": "src/ui/popup.html",
+    "default_icon": {
+      "16": "assets/icons/nightglass-16.png",
+      "32": "assets/icons/nightglass-32.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/ui/options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "src/extension/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "src/extension/prepaint.js",
+        "vendor/darkreader/darkreader.js",
+        "src/shared/settings.js",
+        "src/shared/network-policy.js",
+        "src/extension/content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true
+    }
+  ],
+  "commands": {
+    "toggle-nightglass": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "MacCtrl+Shift+D"
+      },
+      "description": "Toggle Nightglass everywhere"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none';"
+  }
+}

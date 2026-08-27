@@ -1,0 +1,383 @@
+:host {
+    all: initial !important;
+    position: fixed !important;
+    inset: auto 0 0 auto !important;
+    z-index: 2147483646 !important;
+    color-scheme: dark !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    -webkit-text-size-adjust: 100% !important;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ng-launcher {
+    position: fixed;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    display: grid;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    background: rgba(16, 19, 24, 0.94);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.38);
+    color: #f4f1e9;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(14px) saturate(120%);
+}
+
+.ng-launcher[aria-expanded="true"] {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ng-launcher:focus-visible,
+.ng-close:focus-visible,
+.ng-segment input:focus-visible + label,
+.ng-preset input:focus-visible + label,
+.ng-range input:focus-visible {
+    outline: 3px solid #9ecbff;
+    outline-offset: 3px;
+}
+
+.ng-crescent {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #e9edf3;
+}
+
+.ng-crescent::after {
+    position: absolute;
+    top: -4px;
+    left: 7px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: #101318;
+    content: "";
+}
+
+.ng-backdrop {
+    position: fixed;
+    inset: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.42);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+}
+
+.ng-sheet {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-height: min(82dvh, 720px);
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 10px max(18px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
+    border-top: 1px solid #343943;
+    border-radius: 22px 22px 0 0;
+    background: #11151b;
+    box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.48);
+    color: #f1f3f5;
+    transform: translateY(calc(100% + 24px));
+    visibility: hidden;
+    transition: transform 190ms cubic-bezier(.2, .75, .25, 1), visibility 0s linear 190ms;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ng-root[data-open="true"] .ng-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ng-root[data-open="true"] .ng-sheet {
+    transform: translateY(0);
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.ng-handle {
+    width: 38px;
+    height: 5px;
+    margin: 0 auto 10px;
+    border-radius: 999px;
+    background: #565d69;
+}
+
+.ng-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.ng-eyebrow {
+    margin: 0 0 3px;
+    color: #9ca6b5;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.ng-heading h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.28rem;
+    letter-spacing: -0.02em;
+}
+
+.ng-close {
+    display: grid;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid #363d48;
+    border-radius: 50%;
+    background: #1b2028;
+    color: #f4f6f8;
+    font-size: 1.45rem;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.ng-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 44px;
+    margin: 13px 0 16px;
+    padding: 10px 12px;
+    border: 1px solid #303741;
+    border-radius: 12px;
+    background: #191e26;
+    color: #d9dee5;
+    font-size: 0.88rem;
+}
+
+.ng-status-dot {
+    flex: 0 0 auto;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #7c8795;
+    box-shadow: 0 0 0 4px rgba(124, 135, 149, 0.14);
+}
+
+.ng-status[data-state="on"] .ng-status-dot {
+    background: #75d39a;
+    box-shadow: 0 0 0 4px rgba(117, 211, 154, 0.14);
+}
+
+.ng-status[data-state="off"] .ng-status-dot {
+    background: #e29a88;
+    box-shadow: 0 0 0 4px rgba(226, 154, 136, 0.14);
+}
+
+.ng-group {
+    min-width: 0;
+    margin: 0 0 18px;
+    padding: 0;
+    border: 0;
+}
+
+.ng-group legend,
+.ng-section-title {
+    margin: 0 0 9px;
+    padding: 0;
+    color: #c5cbd4;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ng-segments {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 5px;
+    border: 1px solid #303741;
+    border-radius: 13px;
+    background: #0b0e12;
+}
+
+.ng-segment,
+.ng-preset {
+    position: relative;
+    min-width: 0;
+}
+
+.ng-segment input,
+.ng-preset input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.ng-segment label {
+    display: grid;
+    min-height: 44px;
+    padding: 8px 5px;
+    place-items: center;
+    border-radius: 9px;
+    color: #9fa8b6;
+    font-size: 0.88rem;
+    font-weight: 650;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.ng-segment input:checked + label {
+    background: #e7edf5;
+    color: #11151b;
+}
+
+.ng-presets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+}
+
+.ng-preset label {
+    display: grid;
+    min-height: 58px;
+    padding: 7px 3px;
+    place-items: center;
+    align-content: center;
+    gap: 5px;
+    border: 1px solid #343b46;
+    border-radius: 11px;
+    background: #171c23;
+    color: #cfd4dc;
+    font-size: 0.72rem;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.ng-preset input:checked + label {
+    border-color: #9ecbff;
+    box-shadow: inset 0 0 0 1px #9ecbff;
+    color: #ffffff;
+}
+
+.ng-swatch {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: var(--ng-swatch, #181a1b);
+}
+
+.ng-ranges {
+    display: grid;
+    gap: 11px;
+}
+
+.ng-range {
+    display: grid;
+    grid-template-columns: minmax(82px, auto) minmax(120px, 1fr) 45px;
+    align-items: center;
+    gap: 9px;
+    min-height: 44px;
+}
+
+.ng-range label,
+.ng-range output {
+    color: #d5dae1;
+    font-size: 0.82rem;
+}
+
+.ng-range output {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.ng-range input {
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+    accent-color: #9ecbff;
+}
+
+.ng-note {
+    margin: 4px 0 0;
+    color: #8792a1;
+    font-size: 0.73rem;
+    text-align: center;
+}
+
+@media (min-width: 620px) {
+    .ng-sheet {
+        right: max(18px, env(safe-area-inset-right));
+        bottom: max(18px, env(safe-area-inset-bottom));
+        left: auto;
+        width: 420px;
+        max-height: min(760px, calc(100dvh - 36px));
+        border: 1px solid #343943;
+        border-radius: 22px;
+        padding-bottom: 18px;
+        transform: translateY(20px) scale(0.98);
+        opacity: 0;
+    }
+
+    .ng-root[data-open="true"] .ng-sheet {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ng-backdrop,
+    .ng-sheet {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .ng-launcher,
+    .ng-close,
+    .ng-status,
+    .ng-segments,
+    .ng-preset label {
+        border: 1px solid ButtonText;
+        background: Canvas;
+        color: CanvasText;
+        forced-color-adjust: auto;
+    }
+
+    .ng-segment input:checked + label,
+    .ng-preset input:checked + label {
+        outline: 3px solid Highlight;
+        background: Highlight;
+        color: HighlightText;
+    }
+}

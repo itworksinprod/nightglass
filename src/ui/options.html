@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Nightglass settings</title>
+    <link rel="stylesheet" href="options.css">
+    <script src="../shared/settings.js" defer></script>
+    <script src="options.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#settings">Skip to settings</a>
+
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="#settings" aria-label="Nightglass settings home">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span>
+            <strong>Nightglass</strong>
+            <small>Private dark mode, tuned your way</small>
+          </span>
+        </a>
+        <p id="save-status" class="save-status" role="status" aria-live="polite">Loading settings…</p>
+      </div>
+    </header>
+
+    <main id="settings" class="page" tabindex="-1">
+      <form id="settings-form" novalidate>
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <p class="eyebrow">Local-only website theming</p>
+            <h1 id="hero-title">Make the web easier on your eyes.</h1>
+            <p class="hero__copy">Nightglass recalculates page colors while leaving photos and video intact. Your settings and site rules stay in this browser.</p>
+          </div>
+          <label class="master-switch" for="enabled">
+            <span>
+              <strong>Nightglass is active</strong>
+              <small>Turn off everywhere without losing your setup</small>
+            </span>
+            <input id="enabled" name="enabled" type="checkbox" role="switch">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+        </section>
+
+        <div class="settings-grid">
+          <nav class="section-nav" aria-label="Settings sections">
+            <a href="#activation">Activation</a>
+            <a href="#appearance">Appearance</a>
+            <a href="#native-dark">Native dark mode</a>
+            <a href="#iphone">iPhone control</a>
+            <a href="#sites">Site rules</a>
+            <a href="#data">Data &amp; privacy</a>
+          </nav>
+
+          <div class="settings-sections">
+            <section id="activation" class="panel" aria-labelledby="activation-title">
+              <div class="section-heading">
+                <span class="section-number" aria-hidden="true">01</span>
+                <div>
+                  <h2 id="activation-title">Activation</h2>
+                  <p>Choose when Nightglass should transform websites.</p>
+                </div>
+              </div>
+
+              <fieldset class="choice-group">
+                <legend class="visually-hidden">Activation mode</legend>
+                <label class="choice-card">
+                  <input type="radio" name="activation" value="always">
+                  <span>
+                    <strong>Always</strong>
+                    <small>Use your theme at any hour</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="activation" value="system">
+                  <span>
+                    <strong>Follow device</strong>
+                    <small>Activate when your system uses dark mode</small>
+                  </span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="activation" value="schedule">
+                  <span>
+                    <strong>Schedule</strong>
+                    <small>Use a quiet-hours window</small>
+                  </span>
+                </label>
+              </fieldset>
+
+              <div id="schedule-fields" class="schedule-fields" hidden>
+                <label for="schedule-start">
+                  <span>Starts</span>
+                  <input id="schedule-start" name="scheduleStart" type="time" autocomplete="off">
+                </label>
+                <span class="schedule-arrow" aria-hidden="true">→</span>
+                <label for="schedule-end">
+                  <span>Ends</span>
+                  <input id="schedule-end" name="scheduleEnd" type="time" autocomplete="off">
+                </label>
+                <p class="field-note">Schedules that end earlier than they start continue through midnight.</p>
+              </div>
+            </section>
+
+            <section id="appearance" class="panel" aria-labelledby="appearance-title">
+              <div class="section-heading">
+                <span class="section-number" aria-hidden="true">02</span>
+                <div>
+                  <h2 id="appearance-title">Appearance</h2>
+                  <p>Start with a preset, then fine-tune the rendering engine.</p>
+                </div>
+              </div>
+
+              <fieldset>
+                <legend>Preset</legend>
+                <div id="preset-list" class="preset-list" aria-describedby="preset-note"></div>
+                <p id="preset-note" class="field-note">Changing a detailed control switches the preset to Custom.</p>
+              </fieldset>
+
+              <fieldset class="tuning-fields">
+                <legend>Detailed controls</legend>
+
+                <div class="range-field">
+                  <div class="range-field__label">
+                    <label for="brightness">Brightness</label>
+                    <output id="brightness-output" for="brightness">100%</output>
+                  </div>
+                  <input id="brightness" name="brightness" type="range" min="50" max="150" step="1">
+                </div>
+
+                <div class="range-field">
+                  <div class="range-field__label">
+                    <label for="contrast">Contrast</label>
+                    <output id="contrast-output" for="contrast">100%</output>
+                  </div>
+                  <input id="contrast" name="contrast" type="range" min="50" max="150" step="1">
+                </div>
+
+                <div class="range-field">
+                  <div class="range-field__label">
+                    <label for="sepia">Warmth</label>
+                    <output id="sepia-output" for="sepia">0%</output>
+                  </div>
+                  <input id="sepia" name="sepia" type="range" min="0" max="100" step="1">
+                </div>
+
+                <div class="range-field">
+                  <div class="range-field__label">
+                    <label for="grayscale">Grayscale</label>
+                    <output id="grayscale-output" for="grayscale">0%</output>
+                  </div>
+                  <input id="grayscale" name="grayscale" type="range" min="0" max="100" step="1">
+                </div>
+
+                <div class="range-field">
+                  <div class="range-field__label">
+                    <label for="image-dim">Media dimming</label>
+                    <output id="image-dim-output" for="image-dim">0%</output>
+                  </div>
+                  <input id="image-dim" name="imageDim" type="range" min="0" max="100" step="1" aria-describedby="image-dim-note">
+                  <p id="image-dim-note" class="field-note">Reduces glare from photos, video, and canvas without recoloring their pixels.</p>
+                </div>
+
+                <div class="color-grid">
+                  <div class="color-field">
+                    <label id="background-color-label" for="background-color">Page background</label>
+                    <div class="color-inputs">
+                      <input id="background-color-picker" type="color" aria-labelledby="background-color-label">
+                      <input id="background-color" name="backgroundColor" type="text" inputmode="text" maxlength="7" pattern="#[0-9A-Fa-f]{6}" spellcheck="false" autocomplete="off" aria-describedby="color-format-note">
+                    </div>
+                  </div>
+                  <div class="color-field">
+                    <label id="text-color-label" for="text-color">Page text</label>
+                    <div class="color-inputs">
+                      <input id="text-color-picker" type="color" aria-labelledby="text-color-label">
+                      <input id="text-color" name="textColor" type="text" inputmode="text" maxlength="7" pattern="#[0-9A-Fa-f]{6}" spellcheck="false" autocomplete="off" aria-describedby="color-format-note">
+                    </div>
+                  </div>
+                </div>
+                <p id="color-format-note" class="field-note">Use six-digit hex colors, such as #101419.</p>
+              </fieldset>
+            </section>
+
+            <section id="native-dark" class="panel" aria-labelledby="native-title">
+              <div class="section-heading">
+                <span class="section-number" aria-hidden="true">03</span>
+                <div>
+                  <h2 id="native-title">Native dark mode</h2>
+                  <p>Decide what happens when a site already provides a dark design.</p>
+                </div>
+              </div>
+
+              <label class="setting-row" for="detect-native-dark">
+                <span>
+                  <strong>Detect native dark pages</strong>
+                  <small>Check both site declarations and rendered colors to avoid false matches.</small>
+                </span>
+                <input id="detect-native-dark" name="detectNativeDark" type="checkbox" role="switch">
+                <span class="switch" aria-hidden="true"></span>
+              </label>
+
+              <label class="select-field" for="native-dark-behavior">
+                <span>When native dark mode is detected</span>
+                <select id="native-dark-behavior" name="nativeDarkBehavior">
+                  <option value="preserve">Leave the site’s design alone</option>
+                  <option value="theme">Apply the full Nightglass theme</option>
+                </select>
+              </label>
+            </section>
+
+            <section id="iphone" class="panel" aria-labelledby="iphone-title">
+              <div class="section-heading">
+                <span class="section-number" aria-hidden="true">04</span>
+                <div>
+                  <h2 id="iphone-title">iPhone control</h2>
+                  <p>Keep a convenient page control available in mobile Safari.</p>
+                </div>
+              </div>
+
+              <label class="setting-row" for="show-mobile-control">
+                <span>
+                  <strong>Show floating control</strong>
+                  <small>Displays a small movable button for switching Nightglass on or off on the current site.</small>
+                </span>
+                <input id="show-mobile-control" name="showMobileControl" type="checkbox" role="switch">
+                <span class="switch" aria-hidden="true"></span>
+              </label>
+              <p class="info-callout">The floating control appears only in the iPhone userscript build. Desktop extensions use the toolbar popup.</p>
+            </section>
+
+            <section id="sites" class="panel" aria-labelledby="sites-title">
+              <div class="section-heading">
+                <span class="section-number" aria-hidden="true">05</span>
+                <div>
+                  <h2 id="sites-title">Site rules</h2>
+                  <p>Override activation or add a tightly scoped CSS fix for a hostname.</p>
+                </div>
+              </div>
+
+              <div class="site-add" role="group" aria-labelledby="site-add-title">
+                <p id="site-add-title" class="visually-hidden">Add or update a site rule</p>
+                <label for="site-hostname">
+                  <span>Hostname</span>
+                  <input id="site-hostname" type="text" inputmode="url" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="example.com">
+                </label>
+                <label for="site-mode">
+                  <span>Behavior</span>
+                  <select id="site-mode">
+                    <option value="auto">Use global setting</option>
+                    <option value="on">Always on</option>
+                    <option value="off">Always off</option>
+                  </select>
+                </label>
+                <button id="add-site-rule" class="button button--primary" type="button">Add rule</button>
+              </div>
+              <p id="site-form-message" class="form-message" role="status" aria-live="polite"></p>
+
+              <div class="rule-list-wrap">
+                <div class="rule-list-heading">
+                  <h3>Saved rules</h3>
+                  <span id="rule-count" class="count-badge">0</span>
+                </div>
+                <div id="site-rule-list" class="rule-list" aria-live="polite"></div>
+                <p id="empty-rules" class="empty-state">No site-specific rules yet.</p>
+              </div>
+
+              <div id="site-editor" class="site-editor" hidden>
+                <div class="site-editor__heading">
+                  <div>
+                    <p class="eyebrow">Selected hostname</p>
+                    <h3 id="editor-hostname"></h3>
+                  </div>
+                  <button id="close-site-editor" class="icon-button" type="button" aria-label="Close site editor">×</button>
+                </div>
+
+                <label class="select-field" for="editor-site-mode">
+                  <span>Behavior</span>
+                  <select id="editor-site-mode">
+                    <option value="auto">Use global setting</option>
+                    <option value="on">Always on</option>
+                    <option value="off">Always off</option>
+                  </select>
+                </label>
+
+                <label for="site-custom-css">
+                  <span class="label-line">
+                    <strong>Custom CSS fix</strong>
+                    <small>Advanced</small>
+                  </span>
+                  <textarea id="site-custom-css" rows="9" spellcheck="false" autocapitalize="none" autocomplete="off" placeholder="/* Applies only on this hostname */&#10;.article { line-height: 1.65; }" aria-describedby="css-safety-note css-validation"></textarea>
+                </label>
+                <p id="css-safety-note" class="field-note">Nightglass blocks imports, remote resources, executable URLs, and rules that could escape this hostname.</p>
+                <p id="css-validation" class="validation-message" role="status" aria-live="polite"></p>
+                <div class="button-row">
+                  <button id="save-site-editor" class="button button--primary" type="button">Save site rule</button>
+                  <button id="remove-selected-rule" class="button button--danger" type="button">Remove rule</button>
+                </div>
+              </div>
+            </section>
+
+            <section id="data" class="panel" aria-labelledby="data-title">
+              <div class="section-heading">
+                <span class="section-number" aria-hidden="true">06</span>
+                <div>
+                  <h2 id="data-title">Data, privacy &amp; recovery</h2>
+                  <p>Back up your setup, understand permissions, or start fresh.</p>
+                </div>
+              </div>
+
+              <div class="privacy-grid">
+                <article class="privacy-card">
+                  <span class="privacy-card__icon" aria-hidden="true">⌂</span>
+                  <div>
+                    <h3>Stored locally</h3>
+                    <p>Preferences, hostnames, and custom CSS stay in extension storage. Nightglass has no account, analytics, or remote configuration.</p>
+                  </div>
+                </article>
+                <article class="privacy-card">
+                  <span class="privacy-card__icon" aria-hidden="true">◎</span>
+                  <div>
+                    <h3>Website access</h3>
+                    <p>Broad website permission lets Nightglass theme pages and inspect otherwise blocked public stylesheets. Requests omit cookies and credentials.</p>
+                  </div>
+                </article>
+                <article class="privacy-card">
+                  <span class="privacy-card__icon" aria-hidden="true">◇</span>
+                  <div>
+                    <h3>Local diagnostics</h3>
+                    <p>Diagnostic reasons are computed on-device. Page text, form values, browsing paths, cookies, and canvas pixels are never saved.</p>
+                  </div>
+                </article>
+              </div>
+
+              <details class="data-tools">
+                <summary>Import or export settings</summary>
+                <div class="data-tools__body">
+                  <label for="settings-json">
+                    <span>Settings JSON</span>
+                    <textarea id="settings-json" rows="8" spellcheck="false" autocapitalize="none" autocomplete="off" placeholder="Paste a Nightglass settings backup here"></textarea>
+                  </label>
+                  <p id="import-message" class="form-message" role="status" aria-live="polite"></p>
+                  <div class="button-row button-row--wrap">
+                    <button id="prepare-export" class="button" type="button">Prepare export</button>
+                    <button id="download-export" class="button" type="button">Download JSON</button>
+                    <label class="button file-button" for="import-file">Choose JSON file</label>
+                    <input id="import-file" class="visually-hidden" type="file" accept="application/json,.json">
+                    <button id="import-json" class="button button--primary" type="button">Import from text</button>
+                  </div>
+                </div>
+              </details>
+
+              <div class="danger-zone">
+                <div>
+                  <h3>Reset all settings</h3>
+                  <p>Restore defaults and remove every saved site rule.</p>
+                </div>
+                <button id="open-reset-dialog" class="button button--danger" type="button">Reset everything</button>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <p>Changes are saved to this browser.</p>
+          <button id="save-settings" class="button button--primary button--wide" type="submit">Save changes</button>
+        </div>
+      </form>
+    </main>
+
+    <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-description">
+      <form method="dialog">
+        <div class="dialog-mark" aria-hidden="true">!</div>
+        <h2 id="reset-title">Reset Nightglass?</h2>
+        <p id="reset-description">This permanently removes site rules and custom CSS, then restores every option to its default.</p>
+        <div class="button-row">
+          <button class="button" value="cancel">Keep settings</button>
+          <button id="confirm-reset" class="button button--danger" value="confirm">Reset everything</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

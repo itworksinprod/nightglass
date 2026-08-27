@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <title>Nightglass</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div class="brand-row">
+          <div class="brand-lockup">
+            <span class="brand-mark" aria-hidden="true">
+              <span class="brand-moon"></span>
+              <span class="brand-glint"></span>
+            </span>
+            <span class="brand-copy">
+              <strong>Nightglass</strong>
+              <span>Reader</span>
+            </span>
+          </div>
+
+          <button
+            class="power-toggle"
+            id="global-toggle"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            aria-label="Turn Nightglass on everywhere"
+          >
+            <span class="power-glyph" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="status-row">
+          <div class="status-badge" id="status-badge" data-status="checking">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="status-label">Checking this page…</span>
+          </div>
+          <span class="global-state" id="global-state">Nightglass off</span>
+        </div>
+        <p class="status-detail" id="status-detail" aria-live="polite">
+          Connecting to the current tab.
+        </p>
+      </header>
+
+      <main>
+        <section class="panel site-panel" aria-labelledby="site-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">This website</p>
+              <h1 id="site-heading">Current page</h1>
+            </div>
+            <span class="site-monogram" id="site-monogram" aria-hidden="true">–</span>
+          </div>
+
+          <fieldset class="control-fieldset" id="site-mode-fieldset">
+            <legend class="sr-only">Nightglass mode for this website</legend>
+            <div class="segmented-control">
+              <input type="radio" name="site-mode" id="mode-auto" value="auto" checked>
+              <label for="mode-auto">
+                <span>Auto</span>
+                <small>Detect</small>
+              </label>
+
+              <input type="radio" name="site-mode" id="mode-on" value="on">
+              <label for="mode-on">
+                <span>On</span>
+                <small>Force</small>
+              </label>
+
+              <input type="radio" name="site-mode" id="mode-off" value="off">
+              <label for="mode-off">
+                <span>Off</span>
+                <small>Skip</small>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="section-block" aria-labelledby="preset-heading">
+          <div class="section-title-row">
+            <div>
+              <p class="eyebrow">Look</p>
+              <h2 id="preset-heading">Preset</h2>
+            </div>
+            <span class="section-hint">For every site</span>
+          </div>
+
+          <fieldset class="control-fieldset preset-grid">
+            <legend class="sr-only">Choose a color preset</legend>
+
+            <input type="radio" name="preset" id="preset-neutral" value="neutral" checked>
+            <label for="preset-neutral" data-preset="neutral">
+              <span class="preset-swatch" aria-hidden="true"></span>
+              <span>Neutral</span>
+            </label>
+
+            <input type="radio" name="preset" id="preset-warm" value="warm">
+            <label for="preset-warm" data-preset="warm">
+              <span class="preset-swatch" aria-hidden="true"></span>
+              <span>Warm</span>
+            </label>
+
+            <input type="radio" name="preset" id="preset-oled" value="oled">
+            <label for="preset-oled" data-preset="oled">
+              <span class="preset-swatch" aria-hidden="true"></span>
+              <span>OLED</span>
+            </label>
+
+            <input type="radio" name="preset" id="preset-contrast" value="contrast">
+            <label for="preset-contrast" data-preset="contrast">
+              <span class="preset-swatch" aria-hidden="true"></span>
+              <span>Contrast</span>
+            </label>
+          </fieldset>
+        </section>
+
+        <section class="section-block" aria-labelledby="tuning-heading">
+          <div class="section-title-row">
+            <div>
+              <p class="eyebrow">Fine tune</p>
+              <h2 id="tuning-heading">Appearance</h2>
+            </div>
+            <span class="section-hint">Global</span>
+          </div>
+
+          <div class="slider-stack">
+            <div class="slider-control">
+              <div class="slider-meta">
+                <label for="brightness">Brightness</label>
+                <output for="brightness" id="brightness-output">100%</output>
+              </div>
+              <input id="brightness" name="brightness" type="range" min="50" max="150" step="1" value="100">
+            </div>
+
+            <div class="slider-control">
+              <div class="slider-meta">
+                <label for="contrast">Contrast</label>
+                <output for="contrast" id="contrast-output">100%</output>
+              </div>
+              <input id="contrast" name="contrast" type="range" min="50" max="150" step="1" value="100">
+            </div>
+
+            <div class="slider-control">
+              <div class="slider-meta">
+                <label for="warmth">Warmth</label>
+                <output for="warmth" id="warmth-output">0%</output>
+              </div>
+              <input id="warmth" name="warmth" type="range" min="0" max="100" step="1" value="0">
+            </div>
+
+            <div class="slider-control">
+              <div class="slider-meta">
+                <label for="image-dim">Image dim</label>
+                <output for="image-dim" id="image-dim-output">0%</output>
+              </div>
+              <input id="image-dim" name="imageDim" type="range" min="0" max="100" step="1" value="0">
+            </div>
+          </div>
+        </section>
+
+        <section class="panel preference-panel" aria-label="Automation">
+          <label class="setting-row" for="follow-system">
+            <span class="setting-icon system-icon" aria-hidden="true"></span>
+            <span class="setting-copy">
+              <strong>Follow system appearance</strong>
+              <small>Run when your device uses Dark Mode</small>
+            </span>
+            <input class="switch-input" id="follow-system" type="checkbox" role="switch">
+            <span class="switch-visual" aria-hidden="true"></span>
+          </label>
+        </section>
+
+        <p class="notice" id="notice" role="status" aria-live="polite" hidden></p>
+      </main>
+
+      <footer>
+        <button class="text-button" id="reset-site" type="button" disabled>
+          Reset this site
+        </button>
+        <a class="advanced-link" id="advanced-link" href="options.html">
+          Advanced settings
+          <span aria-hidden="true">›</span>
+        </a>
+        <p class="privacy-note">
+          <span class="privacy-lock" aria-hidden="true"></span>
+          Settings stay on this device
+        </p>
+      </footer>
+    </div>
+
+    <script src="../shared/settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

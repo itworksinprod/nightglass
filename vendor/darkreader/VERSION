@@ -1,0 +1,6 @@
+Dark Reader API bundle: 4.9.125
+Source: https://cdn.jsdelivr.net/npm/darkreader@4.9.125/darkreader.js
+Upstream: https://github.com/darkreader/darkreader/tree/v4.9.125
+Upstream SHA-256: eddf910234428e5c203b28db71298132e96b9ee65a19c69c6d6d058c14dadfd7
+Nightglass privacy patch: renderer resource caches use memory only; CORS candidates are validated before caching.
+Patched SHA-256: 4355bdf4b2305f7c206234222f4ca8b90fd2642b6d5e58a1ad00180008f43c6f

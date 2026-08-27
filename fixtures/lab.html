@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nightglass rendering lab</title>
+    <link rel="stylesheet" href="lab.css">
+    <script src="lab.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#">Northwind Lab</a>
+      <nav aria-label="Fixture navigation">
+        <a href="#typography">Typography</a>
+        <a href="#controls">Controls</a>
+        <a href="#graphics">Graphics</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Dynamic theme fixture</p>
+        <h1>Readable color without flattening the web</h1>
+        <p>
+          This page exercises gradients, translucent surfaces, status colors,
+          controls, code, SVG, canvas, frames, shadow DOM, and live mutations.
+        </p>
+        <div class="actions">
+          <button class="primary" id="add-card" type="button">Add live card</button>
+          <a class="secondary" href="#controls">Review controls</a>
+        </div>
+      </section>
+
+      <section id="typography" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Typography and surfaces</p>
+          <h2>Contrast across nested backgrounds</h2>
+        </div>
+        <div class="card-grid" id="card-grid">
+          <article class="card">
+            <span class="badge success">Healthy</span>
+            <h3>Service available</h3>
+            <p>Subtle copy should remain distinct from headings and links.</p>
+            <a href="#">Inspect service</a>
+          </article>
+          <article class="card warm-card">
+            <span class="badge warning">Review</span>
+            <h3>Certificate renewal</h3>
+            <p>Warm semantic colors should remain recognizable after theming.</p>
+            <a href="#">Open checklist</a>
+          </article>
+          <article class="card danger-card">
+            <span class="badge danger">Critical</span>
+            <h3>Access anomaly</h3>
+            <p>Danger states need visible text without becoming fluorescent.</p>
+            <a href="#">View incident</a>
+          </article>
+        </div>
+
+        <pre><code>const policy = {
+  mode: "least-privilege",
+  verified: true,
+};</code></pre>
+
+        <blockquote>
+          A dark theme should preserve hierarchy, not merely exchange black and
+          white.
+        </blockquote>
+      </section>
+
+      <section id="controls" class="section split">
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">Native controls</p>
+            <h2>Forms and focus states</h2>
+          </div>
+          <form class="fixture-form">
+            <label>
+              Workspace name
+              <input name="workspace" value="Northwind Security">
+            </label>
+            <label>
+              Alert channel
+              <select name="channel">
+                <option>Email</option>
+                <option>Pager</option>
+                <option>Dashboard</option>
+              </select>
+            </label>
+            <label>
+              Notes
+              <textarea name="notes" rows="3" placeholder="Add a handoff note"></textarea>
+            </label>
+            <label class="check-row">
+              <input type="checkbox" checked>
+              Preserve native dark websites
+            </label>
+            <label>
+              Confidence
+              <input type="range" min="0" max="100" value="72">
+            </label>
+            <button class="primary" type="button">Save changes</button>
+            <button type="button" disabled>Unavailable</button>
+          </form>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Recent checks</caption>
+            <thead>
+              <tr><th>Control</th><th>Status</th><th>Owner</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>MFA coverage</td><td><span class="dot green"></span>Pass</td><td>Identity</td></tr>
+              <tr><td>Key rotation</td><td><span class="dot amber"></span>Due</td><td>Platform</td></tr>
+              <tr><td>Backup restore</td><td><span class="dot red"></span>Fail</td><td>Resilience</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="graphics" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Graphics</p>
+          <h2>SVG, canvas, frames, and shadow roots</h2>
+        </div>
+        <div class="graphics-grid">
+          <figure>
+            <svg class="chart" viewBox="0 0 320 180" role="img" aria-label="Inline SVG area chart">
+              <defs>
+                <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#2864dc" stop-opacity=".72"></stop>
+                  <stop offset="1" stop-color="#dbe7ff" stop-opacity=".18"></stop>
+                </linearGradient>
+              </defs>
+              <rect width="320" height="180" rx="16" fill="#f7f9fc"></rect>
+              <path d="M20 145 L72 112 L122 128 L175 65 L225 82 L300 28 L300 160 L20 160 Z" fill="url(#area)"></path>
+              <path d="M20 145 L72 112 L122 128 L175 65 L225 82 L300 28" fill="none" stroke="#1749ad" stroke-width="5"></path>
+              <text x="22" y="30" fill="#283042">Inline SVG</text>
+            </svg>
+            <figcaption>Accessible SVG colors should adapt.</figcaption>
+          </figure>
+          <figure>
+            <canvas id="fixture-canvas" width="320" height="180" aria-label="Canvas color swatches"></canvas>
+            <figcaption>Canvas pixels should remain untouched.</figcaption>
+          </figure>
+          <div id="shadow-host" class="shadow-shell"></div>
+          <iframe title="Nested frame fixture" src="frame.html"></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Nightglass local rendering fixture</span>
+      <a href="native-dark.html">Open native-dark fixture</a>
+    </footer>
+  </body>
+</html>
