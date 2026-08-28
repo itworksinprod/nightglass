@@ -1,9 +1,46 @@
 # Nightglass
 
-Nightglass is a private, local-only dark-mode reader for websites. It uses a
-dynamic color engine rather than applying a global inversion filter, preserving
-photos and video while recalculating page colors, gradients, controls, SVGs,
-and dynamically inserted content.
+[![CI](https://github.com/itworksinprod/nightglass/actions/workflows/ci.yml/badge.svg)](https://github.com/itworksinprod/nightglass/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/itworksinprod/nightglass?display_name=tag&sort=semver)](https://github.com/itworksinprod/nightglass/releases/latest)
+
+**A privacy-first, local-only dynamic dark reader for Chromium, Firefox, Safari,
+and an iPhone Safari userscript.**
+
+[Download v0.1.0](https://github.com/itworksinprod/nightglass/releases/tag/v0.1.0) ·
+[Privacy boundary](docs/PRIVACY.md) ·
+[Threat model](docs/THREAT_MODEL.md) ·
+[Architecture](docs/ARCHITECTURE.md)
+
+![A Nightglass-transformed test page preserving gradients, controls, and status colors](docs/images/transformed-page.png)
+
+Nightglass recalculates page colors instead of applying a global inversion
+filter, preserving photos and video while transforming backgrounds, gradients,
+controls, SVGs, shadow DOM, and dynamically inserted content.
+
+## Product views
+
+| Local settings | Toolbar controls |
+| --- | --- |
+| ![Nightglass settings with local-save status](docs/images/settings.png) | ![Nightglass toolbar popup](docs/images/popup.png) |
+
+## Privacy and security boundary
+
+Nightglass has no account, server, analytics, ads, telemetry, remote
+configuration, or remote code. Settings stay in local browser storage; the
+iPhone userscript uses the userscript manager's local value storage. Production
+builds enforce a strict Content Security Policy, pinned dependency hashes,
+versioned settings validation, bounded resource retrieval, and deterministic
+packaging. See the documented [privacy audit](docs/PRIVACY_AUDIT.md).
+
+## What Nightglass builds
+
+Nightglass integrates the pinned, MIT-licensed Dark Reader rendering engine.
+The project owns activation rules, native-dark detection, privacy controls,
+presets, per-site settings, browser adapters, user interfaces, packaging, and
+automated verification. This distinction is also documented in
+[`NOTICE.md`](NOTICE.md) and the [architecture](docs/ARCHITECTURE.md).
+
+## Build targets
 
 The project produces:
 
@@ -12,11 +49,6 @@ The project produces:
 - Safari Web Extension resources ready for Apple's packager;
 - a self-contained userscript for iPhone Safari through the free, open-source
   Userscripts app.
-
-Nightglass has no account, server, analytics, ads, telemetry, or remote code.
-Settings stay in the browser's local extension storage. The iPhone userscript
-stores its settings through the userscript manager. See the documented
-[privacy boundary](docs/PRIVACY.md) and [privacy audit](docs/PRIVACY_AUDIT.md).
 
 ## Development
 

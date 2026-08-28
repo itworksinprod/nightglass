@@ -76,7 +76,7 @@ packaged, and scans production source for collection-capable channels.
 
 ## Verification
 
-- `npm run verify`: 36 of 36 tests passed.
+- `npm run verify`: 38 of 38 tests passed.
 - Build policy validated all three desktop targets, pinned dependency hashes,
   Content Security Policy, assets, and local-code rules.
 - Packaging validation produced deterministic Chromium, Firefox, Safari, and

@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify, package, and publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      - name: Validate release tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_version="$(node -p "require('./package.json').version")"
+          expected_tag="v${package_version}"
+          if [[ "${GITHUB_REF_NAME}" != "${expected_tag}" ]]; then
+            echo "Release tag ${GITHUB_REF_NAME} does not match package version ${package_version}." >&2
+            echo "Expected tag: ${expected_tag}" >&2
+            exit 1
+          fi
+
+      - name: Build, check, and test
+        run: npm run verify
+
+      - name: Build release packages
+        run: npm run package
+
+      - name: Verify release artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_version="$(node -p "require('./package.json').version")"
+          required_files=(
+            "nightglass-${package_version}-chromium.zip"
+            "nightglass-${package_version}-firefox.xpi"
+            "nightglass-${package_version}-safari-web-extension.zip"
+            "nightglass-${package_version}.user.js"
+            "INSTALL.md"
+            "SHA256SUMS"
+          )
+
+          for filename in "${required_files[@]}"; do
+            if [[ ! -f "artifacts/${filename}" ]]; then
+              echo "Missing release artifact: artifacts/${filename}" >&2
+              exit 1
+            fi
+          done
+
+          (
+            cd artifacts
+            sha256sum --check SHA256SUMS
+          )
+
+      - name: Publish GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          release_title="Nightglass ${GITHUB_REF_NAME}"
+          release_notes="docs/releases/${GITHUB_REF_NAME}.md"
+
+          if [[ ! -f "${release_notes}" ]]; then
+            echo "Missing reviewed release notes: ${release_notes}" >&2
+            exit 1
+          fi
+
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" artifacts/* --clobber
+            gh release edit "${GITHUB_REF_NAME}" \
+              --title "${release_title}" \
+              --notes-file "${release_notes}"
+          else
+            gh release create "${GITHUB_REF_NAME}" artifacts/* \
+              --verify-tag \
+              --title "${release_title}" \
+              --notes-file "${release_notes}"
+          fi

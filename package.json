@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A private, cross-browser dynamic dark-mode extension for desktop and iPhone Safari.",
+  "description": "A privacy-first, cross-browser dynamic dark-mode extension for desktop and iPhone Safari.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
