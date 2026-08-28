@@ -76,7 +76,7 @@ test("normalizes defaults, strict types, bounds, colors, and times", () => {
         grayscale: 43,
         imageDim: 0,
         backgroundColor: "#aabbcc",
-        textColor: "#e8e6e3",
+        textColor: "#f4faff",
         schedule: {start: "07:05", end: "07:00"},
         showMobileControl: false,
         siteRules: {}

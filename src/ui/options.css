@@ -1,24 +1,25 @@
 :root {
   color-scheme: dark;
-  --bg: #080b0d;
-  --bg-soft: #0c1114;
-  --panel: #101619;
-  --panel-raised: #151d21;
-  --panel-hover: #192328;
-  --line: #273237;
-  --line-strong: #3a484f;
-  --text: #f2f5f3;
-  --text-soft: #b6c1bc;
-  --text-muted: #7e8c86;
-  --accent: #b8f37a;
-  --accent-strong: #c9ff91;
-  --accent-ink: #132006;
-  --accent-soft: rgba(184, 243, 122, 0.1);
+  --bg: #081426;
+  --bg-soft: #101c34;
+  --panel: #0c2945;
+  --panel-raised: #102f4d;
+  --panel-hover: #143a5a;
+  --line: rgba(73, 219, 214, 0.18);
+  --line-strong: rgba(112, 245, 236, 0.36);
+  --text: #f4faff;
+  --text-soft: #cae3ff;
+  --text-muted: #86a6c4;
+  --accent: #49dbd6;
+  --accent-strong: #70f5ec;
+  --accent-deep: #22bada;
+  --accent-ink: #06131f;
+  --accent-soft: rgba(73, 219, 214, 0.1);
   --danger: #ff918c;
   --danger-soft: rgba(255, 111, 104, 0.09);
   --warning: #f5ca76;
   --success: #91e6af;
-  --focus: #d4ffac;
+  --focus: #70f5ec;
   --radius-sm: 9px;
   --radius: 14px;
   --radius-lg: 22px;
@@ -42,8 +43,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at 8% -10%, rgba(184, 243, 122, 0.07), transparent 31rem),
-    radial-gradient(circle at 94% 9%, rgba(120, 178, 203, 0.055), transparent 30rem),
+    radial-gradient(circle at 8% -10%, rgba(73, 219, 214, 0.1), transparent 31rem),
+    radial-gradient(circle at 94% 9%, rgba(34, 186, 218, 0.08), transparent 30rem),
     var(--bg);
   color: var(--text);
   font-size: 15px;
@@ -159,7 +160,7 @@ legend {
   z-index: 30;
   top: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(8, 11, 13, 0.88);
+  background: rgba(8, 20, 38, 0.9);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
@@ -184,25 +185,12 @@ legend {
 }
 
 .brand__mark {
-  position: relative;
-  width: 30px;
-  height: 30px;
+  display: block;
+  width: 36px;
+  height: 36px;
   flex: 0 0 auto;
-  border: 1px solid rgba(184, 243, 122, 0.4);
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 24px rgba(184, 243, 122, 0.15);
-}
-
-.brand__mark::after {
-  position: absolute;
-  top: -2px;
-  left: 9px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: var(--bg);
-  content: "";
+  border-radius: 10px;
+  box-shadow: 0 0 24px rgba(34, 186, 218, 0.2);
 }
 
 .brand strong,
@@ -331,7 +319,7 @@ legend {
   flex: 0 0 auto;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  background: #263036;
+  background: #1b4965;
   transition: border-color 150ms ease, background 150ms ease;
 }
 
@@ -362,7 +350,7 @@ legend {
 .master-switch:focus-within,
 .setting-row:focus-within {
   border-color: var(--focus);
-  box-shadow: 0 0 0 3px rgba(212, 255, 172, 0.16);
+  box-shadow: 0 0 0 3px rgba(112, 245, 236, 0.16);
 }
 
 .settings-grid {
@@ -407,7 +395,7 @@ legend {
   padding: clamp(24px, 4vw, 42px);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(145deg, rgba(21, 29, 33, 0.96), rgba(14, 20, 23, 0.96));
+  background: linear-gradient(145deg, rgba(16, 47, 77, 0.96), rgba(12, 33, 57, 0.96));
   box-shadow: var(--shadow);
 }
 
@@ -452,7 +440,7 @@ legend {
   min-height: 94px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(8, 11, 13, 0.34);
+  background: rgba(8, 20, 38, 0.48);
   transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
 }
 
@@ -470,7 +458,7 @@ legend {
 
 .choice-card:focus-within,
 .preset-card:focus-within {
-  outline: 3px solid rgba(212, 255, 172, 0.18);
+  outline: 3px solid rgba(112, 245, 236, 0.18);
   outline-offset: 1px;
 }
 
@@ -519,7 +507,7 @@ legend {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(8, 11, 13, 0.32);
+  background: rgba(8, 20, 38, 0.46);
 }
 
 .schedule-fields[hidden] {
@@ -560,7 +548,7 @@ textarea {
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
   outline: none;
-  background: #0a0f12;
+  background: #071321;
   color: var(--text);
   transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
 }
@@ -589,8 +577,8 @@ input[type="time"]:focus,
 select:focus,
 textarea:focus {
   border-color: var(--focus);
-  box-shadow: 0 0 0 3px rgba(212, 255, 172, 0.13);
-  background: #0d1417;
+  box-shadow: 0 0 0 3px rgba(112, 245, 236, 0.13);
+  background: #0d2740;
 }
 
 input[aria-invalid="true"],
@@ -787,7 +775,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid var(--line-strong);
   border-right: 0;
   border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  background: #0a0f12;
+  background: #071321;
 }
 
 .color-inputs input[type="text"] {
@@ -851,7 +839,7 @@ input[type="range"]::-moz-range-thumb {
 .icon-button:focus-visible,
 summary:focus-visible,
 a:focus-visible {
-  outline: 3px solid rgba(212, 255, 172, 0.3);
+  outline: 3px solid rgba(112, 245, 236, 0.3);
   outline-offset: 2px;
 }
 
@@ -948,7 +936,7 @@ a:focus-visible {
   padding: 6px 7px 6px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: rgba(8, 11, 13, 0.28);
+  background: rgba(8, 20, 38, 0.42);
 }
 
 .rule-item[data-selected="true"] {
@@ -1043,7 +1031,7 @@ a:focus-visible {
   padding: 20px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background: #0c1215;
+  background: #0c2945;
 }
 
 .site-editor[hidden] {
@@ -1109,7 +1097,7 @@ a:focus-visible {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(8, 11, 13, 0.28);
+  background: rgba(8, 20, 38, 0.42);
 }
 
 .privacy-card__icon {
@@ -1139,7 +1127,7 @@ a:focus-visible {
   margin-top: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(8, 11, 13, 0.26);
+  background: rgba(8, 20, 38, 0.4);
 }
 
 .data-tools summary {
@@ -1211,7 +1199,7 @@ a:focus-visible {
   padding: 10px 10px 10px 18px;
   border: 1px solid var(--line-strong);
   border-radius: 15px;
-  background: rgba(18, 25, 28, 0.94);
+  background: rgba(12, 41, 69, 0.96);
   box-shadow: 0 12px 45px rgba(0, 0, 0, 0.4);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -1234,7 +1222,7 @@ dialog {
 }
 
 dialog::backdrop {
-  background: rgba(3, 5, 6, 0.78);
+  background: rgba(4, 12, 24, 0.82);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
@@ -1276,7 +1264,7 @@ dialog p {
   padding: 12px 16px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #182126;
+  background: #153956;
   color: var(--text);
   box-shadow: var(--shadow);
   font-size: 0.78rem;

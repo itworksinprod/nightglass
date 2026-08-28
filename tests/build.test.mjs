@@ -39,6 +39,7 @@ async function fixture() {
     "src/ui/options.html": "<!doctype html><link rel=\"stylesheet\" href=\"options.css\"><script src=\"../shared/settings.js\"></script><script src=\"options.js\"></script>\n",
     "src/ui/options.css": ":root { color-scheme: dark; }\n",
     "src/ui/options.js": "globalThis.__nightglassOptionsLoaded = true;\n",
+    "src/ui/preview-api.js": "globalThis.__nightglassPreviewApiLoaded = true;\n",
     "src/userscript/adapter.js": "globalThis.__nightglassUserscriptAdapterLoaded = true;\n",
     "src/userscript/mobile-control.css": ":host { color: #f5f7fa; background: #11151b; }\n",
     "src/userscript/mobile-control.js": "globalThis.__nightglassMobileControlLoaded = true;\n",

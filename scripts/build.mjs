@@ -32,6 +32,7 @@ export const REQUIRED_SOURCE_FILES = Object.freeze([
   "src/ui/options.html",
   "src/ui/options.css",
   "src/ui/options.js",
+  "src/ui/preview-api.js",
   "vendor/darkreader/darkreader.js",
   "vendor/darkreader/LICENSE",
   "vendor/darkreader/VERSION",

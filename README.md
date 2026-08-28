@@ -6,7 +6,7 @@
 **A privacy-first, local-only dynamic dark reader for Chromium, Firefox, Safari,
 and an iPhone Safari userscript.**
 
-[Download v0.1.0](https://github.com/itworksinprod/nightglass/releases/tag/v0.1.0) ·
+[Download v0.1.1](https://github.com/itworksinprod/nightglass/releases/tag/v0.1.1) ·
 [Privacy boundary](docs/PRIVACY.md) ·
 [Threat model](docs/THREAT_MODEL.md) ·
 [Architecture](docs/ARCHITECTURE.md)
@@ -61,7 +61,7 @@ instructions are generated into `dist/INSTALL.md`.
 
 ## Project status
 
-Version 0.1.0 is packaged for personal use. Automated tests, build-policy
+Version 0.1.1 is packaged for personal use. Automated tests, build-policy
 validation, and archive checks cover every target. Real packaged-extension smoke
 tests have passed in Chrome 148, Firefox 154.0.1, and Safari 26.6.2. Safari checks
 covered live page transformation, dynamically inserted content, native-dark

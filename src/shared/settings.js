@@ -33,8 +33,8 @@
             sepia: 0,
             grayscale: 0,
             imageDim: 0,
-            backgroundColor: "#181a1b",
-            textColor: "#e8e6e3"
+            backgroundColor: "#101c34",
+            textColor: "#f4faff"
         },
         warm: {
             label: "Warm",
@@ -73,8 +73,8 @@
             sepia: 0,
             grayscale: 0,
             imageDim: 0,
-            backgroundColor: "#181a1b",
-            textColor: "#e8e6e3"
+            backgroundColor: "#101c34",
+            textColor: "#f4faff"
         }
     });
 
